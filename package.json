@@ -1,0 +1,23 @@
+{
+  "name": "imo-ng",
+  "version": "1.0.0",
+  "description": "Angular Module Utility Project",
+  "repository": "git@github.com:ivanmorales/imo-ng.git",
+  "devDependencies": {
+    "bower": "~1.3.5",
+    "shelljs": "^0.3.0",
+    "http-server": "^0.6.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-contrib-watch": "~0.6.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-cssmin": "v0.9.0",
+    "grunt-contrib-sass": "~0.7.3"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server www/ -a localhost -p 10101"
+  }
+}

@@ -1,0 +1,10 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/styles\.sass}line{font-family:\000034}}
+.box {
+  background-color: #428bca;
+  padding: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
