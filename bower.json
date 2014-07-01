@@ -10,6 +10,7 @@
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "bootstrap": "~3.2.0",
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "modernizr": "~2.8.2"
   }
 }

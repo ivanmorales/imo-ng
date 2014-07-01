@@ -1,0 +1,17 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\000034}}
+.imo-surface-reaction-click {
+  position: relative;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\000038}}
+.imo-surface-reaction-click .imo-surface-reaction-click-circle {
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}

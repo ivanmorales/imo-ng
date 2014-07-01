@@ -1,4 +1,4 @@
 "use strict"
 
 app = angular
-  .module 'imo-ng', []
+  .module 'imo', []
