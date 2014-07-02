@@ -15,3 +15,46 @@
   -o-border-radius: 50%;
   border-radius: 50%;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000315}}
+.imo-tab-slider {
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000317}}
+.imo-tab-slider .imo-tab-slider-labels {
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000319}}
+.imo-tab-slider .imo-tab-slider-labels ul {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000324}}
+.imo-tab-slider .imo-tab-slider-labels ul li {
+  padding: 5px;
+  width: 125px;
+  list-style: none none outside;
+  text-align: center;
+  display: inline-block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000332}}
+.imo-tab-slider .imo-tab-slider-slides {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000334}}
+.imo-tab-slider .imo-tab-slider-slides .imo-tab-slider-item {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -1000px;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000341}}
+.imo-tab-slider .imo-tab-slider-slides .imo-tab-slider-item.active {
+  top: 0;
+  left: 0;
+}

@@ -25,6 +25,21 @@
       <div class="jumbotron">
         <h1>imo-ng</h1>
       </div>
+      <section>
+        <h2>Tab Slider</h2>
+        <div class="row" ng-controller="TabSliderCtrl as ctrl">
+          <div class="col-sm-offset-2 col-sm-8 col-lg-offset-2 col-lg-8">
+            <imo-tab-slider>
+              <imo-tab-slider-item label="{{item.title}}" ng-repeat="item in items">
+                <div>
+                  <h3>{{item.title}}</h3>
+                  <p>{{item.content}}</p>
+                </div>
+              </imo-tab-slider-item>
+            </imo-tab-slider>
+          </div>
+        </div>
+      </section>
 
       <section>
         <h2>Material Design Click</h2>
@@ -49,8 +64,10 @@
           </div>
         </div>
       </section>
+
     </div>
 
+    <script src="vendor/hammerjs/hammer.js"></script>
     <script src="vendor/angular/angular.js"></script>
     <script src="js/build/build.js"></script>
   </body>

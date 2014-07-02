@@ -11,3 +11,34 @@
     top: -1000px
     background-color: rgba(255, 255, 255, 0.4)
     +border-radius(50%)
+
+.imo-tab-slider
+  overflow: hidden
+  .imo-tab-slider-labels
+    overflow: hidden
+    ul
+      margin: 0
+      padding: 0
+      white-space: nowrap
+
+      li
+        padding: 5px
+        width: 125px
+        list-style: none none outside
+
+        text-align: center
+        display: inline-block
+
+  .imo-tab-slider-slides
+    position: relative
+    
+    .imo-tab-slider-item
+      display: none
+      position: absolute
+      top: 0
+      left: -1000px
+      +transition(all 400ms)
+
+      &.active
+        top: 0
+        left: 0

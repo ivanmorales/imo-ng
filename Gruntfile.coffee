@@ -17,13 +17,13 @@ module.exports = (grunt)->
         atBegin: true
         interval: 500
 
-      coffee: 
+      jscoffee: 
         files: [paths.coffee + paths.all + "coffee"]
         tasks: ['coffee']
 
-      # sass: 
+      # csscompass: 
       #   files: [paths.sass + paths.all + "sass"]
-      #   task: ['sass']
+      #   task: ['compass:default']
 
 
     # clean:
@@ -33,8 +33,9 @@ module.exports = (grunt)->
     compass:
       default:
         options:
-          sassDir: paths.sass
-          cssDir: paths.css
+          sassDir: "sass"
+          cssDir: "www/css"
+          imagesDir: "sass/images"
           httpPath: '/'
           relativeAssets: true
           boring: true
@@ -58,14 +59,9 @@ module.exports = (grunt)->
 
   # Load NPM Tasks
   grunt.loadNpmTasks(task) for task in [
-    # 'grunt-contrib-uglify',
-    # 'grunt-contrib-clean',
-    'grunt-contrib-compass',
-    'grunt-contrib-coffee',
-    'grunt-contrib-watch',
-    'grunt-contrib-sass'
-    # 'grunt-contrib-imagemin',
-    # 'grunt-contrib-cssmin'
+    'grunt-contrib-compass'
+    'grunt-contrib-coffee'
+    'grunt-contrib-watch'
   ]
 
-  grunt.registerTask('default', ['watch'])
+  grunt.registerTask('default', ['compass', 'coffee'])
