@@ -2,6 +2,7 @@ app
   .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 
+    scope: {}
     restrict: "A"
     transclude: true
     template: "<div imo-surface-reaction-click-circle></div><div ng-transclude></div>"
@@ -24,18 +25,18 @@ app
           scope.circle
             .stop(true, true)
             .css
-              width: "0px"
-              height: "0px"
-              top: "#{e.clientY - element.offset().top}px"
-              left: "#{e.clientX - element.offset().left}px"
-              opacity: "1"
+              width: "40px"
+              height: "40px"
+              top: "#{e.clientY - element.offset().top - 20}px"
+              left: "#{e.clientX - element.offset().left - 20}px"
+              opacity: "0.75"
 
 
             .animate
-              width: "500px"
-              height: "500px"
-              top: "-=250"
-              left: "-=250"
+              width: "300px"
+              height: "300px"
+              top: "-=150"
+              left: "-=150"
               opacity: "0"
             , 500, ->
               scope.showCircle = false
