@@ -1,26 +1,35 @@
 app
-  .directive "imoSurfaceReaction", ['$timeout', ($timeout)->
+  .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 
     restrict: "A"
     transclude: true
-    template: "<div class=\"#{_class}-circle\"></div><div ng-transclude></div>"
-    link: ($scope, $el)->
-      $el
+    template: "<div imo-surface-reaction-click-circle></div><div ng-transclude></div>"
+    controller: ["$scope", ($scope)->
+      $scope.circle = null
+
+      @registerCircle = (element)->
+        $scope.circle = element
+        return
+      return
+    ]
+    link: (scope, element)->
+      scope.showCircle = false
+      element
         .bind 'mousedown', (e)->
-          return if $el.hasClass(_class)
+          return if scope.showCircle
+          scope.showCircle = true
+          element.addClass(_class)
 
-          $el.addClass(_class)
-
-          $circle = $el.find(".#{_class}-circle")
-            .show()
+          scope.circle
             .stop(true, true)
             .css
               width: "0px"
               height: "0px"
-              top: "#{e.clientY - $el.offset().top + jQuery(document).scrollTop()}px"
-              left: "#{e.clientX - $el.offset().left}px"
+              top: "#{e.clientY - element.offset().top}px"
+              left: "#{e.clientX - element.offset().left}px"
               opacity: "1"
+
 
             .animate
               width: "500px"
@@ -29,27 +38,40 @@ app
               left: "-=250"
               opacity: "0"
             , 500, ->
-              jQuery(@).hide()
-              $el.removeClass(_class)
+              scope.showCircle = false
+              element.removeClass(_class)
               return          
           return
       return
-  ]
+
+  .directive "imoSurfaceReactionClickCircle", ->
+    restrict: "A"
+    require: "^imoSurfaceReaction"
+    replace: true
+    template: "<div class=\"imo-surface-reaction-click-circle\"></div>"
+    link: (scope, element, attrs, controller)->
+      controller.registerCircle(element)
+      return
 
   .directive "imoTabSliderItem", ["$q", ($q)->
-    scope: 
+    scope:
       label: "@"
+      current: "@"
     restrict: "E"
     replace: true
     require: "^imoTabSlider"
     transclude: true
-    template: """<div class="imo-tab-slider-item" ng-transclude></div>"""
-    link: ($scope, $el, $attrs, $outerController)->
+    template: """<div class="imo-tab-slider-item" current="{{current}}" ng-show="tabIndex == current" ng-transclude></div>"""
+    link: (scope, element, attrs, controller)->
+      scope.current = 0
+      scope.tabIndex = controller.currentTabLength()
+
       tab = 
-        label: $scope.label
-        element: $el
-      $outerController.registerTab(tab)
-      return
+        label: scope.label
+        element: element
+        index: scope.tabIndex
+
+      controller.registerTab(tab)
   ]
 
   .directive "imoTabSlider", ['$q', '$timeout', ($q, $timeout)->
@@ -58,64 +80,65 @@ app
       transform: false
       swipe_velocity: 0.3
 
-    scope: {}
+    _private = 
+      adjustLabelBar: (scope, tab)->
+        $active = tab.labelElement
+        $ul = $active.parent()
+        return if $active.length is 0
+
+        # Figure out what left is
+        scope.left = -1 * ($active.position().left - 50)
+        scope.left = 0 if scope.left > 0
+        scope.left = ($ul.parent().width() - $ul.width()) if ($ul.width() + scope.left) < $ul.parent().width()
+
     restrict: "E"
     replace: true
     transclude: true
     template: """
-    <div class="imo-tab-slider">
-      <div class="imo-tab-slider-labels">
-        <ul>
-          <li ng-repeat="tab in tabs" data-tab-index="{{$index}}"><strong>{{tab.label}}</strong></li>
-        </ul>
-      </div>
-      <div class="imo-tab-slider-slides" ng-transclude></div>
-    </div>"""
+      <div class="imo-tab-slider">
+        <div class="imo-tab-slider-labels">
+          <ul style="left:{{left}}px">
+            <li ng-repeat="tab in tabs" ng-click="scrollTo(tab)" ng-class="{active: current == tab.index}">{{tab.label}}</li>
+          </ul>
+        </div>
+        <div class="imo-tab-slider-slides" ng-swipe-right="prev()" ng-swipe-left="next()" ng-transclude></div>
+      </div>"""
     controller: ["$scope", ($scope)->
       $scope.tabs = []
+
       @registerTab = (tab)->
         $scope.tabs.push(tab)
         return
+
+      @currentTabLength = ->
+        $scope.tabs.length
+
+      $scope.prev = =>
+        idx = if $scope.current is 0 then 0 else $scope.current - 1
+        $scope.scrollTo($scope.tabs[idx], null)
+        return
+
+      $scope.next = =>
+        max = @currentTabLength() - 1
+        idx = if $scope.current is max then max else $scope.current + 1
+        $scope.scrollTo($scope.tabs[idx], null)
+        return
+
+      $scope.scrollTo = (tab)->
+        $scope.currentTab = tab
+
+        tab.labelElement ?= $scope.element.find('.imo-tab-slider-labels ul li').eq(tab.index)
+        $scope.current = tab.index
+
+        _private.adjustLabelBar($scope, tab)
+
+        return
       return
     ]
-    link: ($scope, $el, $attrs)->
-      $scope.current = null
-
-      $slides = $el.find(".imo-tab-slider-labels")
-
-      $slides
-        .on "click", "li", (e)->
-          $(@).trigger("selectTab")
-          return
-        .on "selectTab", "li", (e)->
-          $obj = $(@).addClass('active').siblings().removeClass('active')
-
-          tab = $scope.tabs[$obj.data('tab-index')]
-
-          if $scope.current?
-            $scope.current.element.hide()
-
-          tab.element.show().css
-            top: 0
-            left: 0
-          $scope.current = tab
-
-          $el.height(tab.element.height() + $slides.height())
-
-          return
-          
-
-      Hammer($el.find(".imo-tab-slider-slides")[0], hammerOptions)
-        .on "swipeleft swiperight", (e)->
-          console.log e.type
-          return
-
-
-      $timeout ->
-        return if $scope.tabs.length is 0
-        
-        $el.find(".imo-tab-slider-labels ul li:first").trigger('selectTab')
-      , 0
-
-      return
+    link: (scope, element, attrs)->
+      scope.element = element
+      scope.current = 0
+      scope.currentTab = null
+      scope.left = 0
+      scope.currentLabel = null
   ]

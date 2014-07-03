@@ -1,7 +1,9 @@
 "use strict"
 
 app = angular
-  .module 'imo', []
+  .module 'imo', [
+    'ngTouch'
+  ]
   .controller 'TabSliderCtrl', ["$scope", ($scope)->
     $scope.items = [
       {
@@ -19,6 +21,15 @@ app = angular
       },
       {
         title: "Weekend"
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aliquam asperiores modi aspernatur dignissimos totam enim ipsum delectus vel natus id soluta maxime sunt tenetur laudantium dolorum odio aliquid, aut."
+      },
+      {
+        title: "Tomorrow 1"
+        content: "<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloribus in quos provident quibusdam fugiat, voluptas, doloremque autem debitis architecto nam labore nihil pariatur fugit consectetur possimus itaque cumque. Reprehenderit.</div>
+        <div>Culpa eius eligendi a, vitae minima exercitationem ipsum dolorum, qui, cum nihil necessitatibus tenetur incidunt aperiam optio soluta, repudiandae blanditiis accusantium atque assumenda excepturi vel. Neque at corporis numquam rem.</div>"
+      },
+      {
+        title: "Weekend 2"
         content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aliquam asperiores modi aspernatur dignissimos totam enim ipsum delectus vel natus id soluta maxime sunt tenetur laudantium dolorum odio aliquid, aut."
       },
     ]

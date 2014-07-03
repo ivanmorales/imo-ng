@@ -1,6 +1,12 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/styles\.sass}line{font-family:\000034}}
-.box {
+body {
+  font-weight: 200;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/styles\.sass}line{font-family:\000037}}
+body .box {
+  font-weight: 200;
   background-color: #428bca;
+  color: white;
   padding: 10px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

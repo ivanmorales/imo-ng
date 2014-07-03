@@ -1,6 +1,9 @@
 @import compass/utilities
 @import compass/css3
 
+.imo-surface-reaction-click-circle
+  display: none
+  
 .imo-surface-reaction-click
   position: relative
   overflow: hidden
@@ -9,34 +12,57 @@
     position: absolute
     left: -1000px
     top: -1000px
+    display: block
     background-color: rgba(255, 255, 255, 0.4)
     +border-radius(50%)
+
 
 .imo-tab-slider
   overflow: hidden
   .imo-tab-slider-labels
     overflow: hidden
+    position: relative
+
+    clear: both
+
     ul
       margin: 0
       padding: 0
       white-space: nowrap
+      position: relative
+      left: 0
+      float: left
+      +transition(all 400ms)
 
       li
-        padding: 5px
-        width: 125px
+        padding: 5px 40px
+        display: inline-block
         list-style: none none outside
 
         text-align: center
-        display: inline-block
+        font-weight: 200
+        cursor: pointer
+        background-color: transparent
+        border-radius: 3px
+        +transition(all 400ms)
+
+        &.active
+          background-color: #428BCA
+          color: white
+          &:hover
+            background-color: darken(#428BCA, 10%)
+
+        &:hover
+          background-color: #E9E9E9
 
   .imo-tab-slider-slides
     position: relative
     
     .imo-tab-slider-item
-      display: none
-      position: absolute
-      top: 0
-      left: -1000px
+      // display: none
+      // position: absolute
+      // top: 0
+      // left: -1000px
       +transition(all 400ms)
 
       &.active

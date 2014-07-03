@@ -1,13 +1,19 @@
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\000034}}
+.imo-surface-reaction-click-circle {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\000037}}
 .imo-surface-reaction-click {
   position: relative;
   overflow: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\000038}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000311}}
 .imo-surface-reaction-click .imo-surface-reaction-click-circle {
   position: absolute;
   left: -1000px;
   top: -1000px;
+  display: block;
   background-color: rgba(255, 255, 255, 0.4);
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -16,44 +22,69 @@
   border-radius: 50%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000320}}
 .imo-tab-slider {
   overflow: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000322}}
 .imo-tab-slider .imo-tab-slider-labels {
   overflow: hidden;
+  position: relative;
+  clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000328}}
 .imo-tab-slider .imo-tab-slider-labels ul {
   margin: 0;
   padding: 0;
   white-space: nowrap;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000324}}
-.imo-tab-slider .imo-tab-slider-labels ul li {
-  padding: 5px;
-  width: 125px;
-  list-style: none none outside;
-  text-align: center;
-  display: inline-block;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000332}}
-.imo-tab-slider .imo-tab-slider-slides {
   position: relative;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000334}}
-.imo-tab-slider .imo-tab-slider-slides .imo-tab-slider-item {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: -1000px;
+  left: 0;
+  float: left;
   -webkit-transition: all 400ms;
   -moz-transition: all 400ms;
   -o-transition: all 400ms;
   transition: all 400ms;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000337}}
+.imo-tab-slider .imo-tab-slider-labels ul li {
+  padding: 5px 40px;
+  display: inline-block;
+  list-style: none none outside;
+  text-align: center;
+  font-weight: 200;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 3px;
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000349}}
+.imo-tab-slider .imo-tab-slider-labels ul li.active {
+  background-color: #428bca;
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000352}}
+.imo-tab-slider .imo-tab-slider-labels ul li.active:hover {
+  background-color: #3071a9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000355}}
+.imo-tab-slider .imo-tab-slider-labels ul li:hover {
+  background-color: #e9e9e9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000358}}
+.imo-tab-slider .imo-tab-slider-slides {
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000361}}
+.imo-tab-slider .imo-tab-slider-slides .imo-tab-slider-item {
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/ivan\/dev-mobile\/imo-ng\/sass\/imo-ng\.sass}line{font-family:\0000368}}
 .imo-tab-slider .imo-tab-slider-slides .imo-tab-slider-item.active {
   top: 0;
   left: 0;
