@@ -9,7 +9,7 @@ angular.module("imo", ["ngTouch"])
       $scope.circle = null
 
       @registerCircle = (element)->
-        $scope.circle = element
+        $scope.circle = jQuery(element)
         return
       return
     ]
@@ -72,13 +72,10 @@ angular.module("imo", ["ngTouch"])
         index: scope.tabIndex
 
       controller.registerTab(tab)
+      return
   ]
 
   .directive "imoTabSlider", ['$q', '$timeout', ($q, $timeout)->
-    hammerOptions = 
-      drag: false
-      transform: false
-      swipe_velocity: 0.3
 
     _private = 
       adjustLabelBar: (scope, tab)->
@@ -91,9 +88,12 @@ angular.module("imo", ["ngTouch"])
         scope.left = 0 if scope.left > 0
         scope.left = ($ul.parent().width() - $ul.width()) if ($ul.width() + scope.left) < $ul.parent().width()
 
+        return
     restrict: "E"
     replace: true
     transclude: true
+    scope:
+      control: "="
     template: """
       <div class="imo-tab-slider">
         <div class="imo-tab-slider-labels">
@@ -136,9 +136,14 @@ angular.module("imo", ["ngTouch"])
       return
     ]
     link: (scope, element, attrs)->
-      scope.element = element
+      scope.internalControl = scope.control or {}
+      scope.internalControl.clearTabs = ->
+        scope.tabs = []
+        scope.current = 0
+      scope.element = jQuery(element)
       scope.current = 0
       scope.currentTab = null
       scope.left = 0
       scope.currentLabel = null
+      return
   ]
