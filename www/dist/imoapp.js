@@ -9,7 +9,7 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
       "$scope", function($scope) {
         $scope.circle = null;
         this.registerCircle = function(element) {
-          $scope.circle = element;
+          $scope.circle = jQuery(element);
         };
       }
     ],
@@ -71,18 +71,13 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
           element: element,
           index: scope.tabIndex
         };
-        return controller.registerTab(tab);
+        controller.registerTab(tab);
       }
     };
   }
 ]).directive("imoTabSlider", [
   '$q', '$timeout', function($q, $timeout) {
-    var hammerOptions, _private;
-    hammerOptions = {
-      drag: false,
-      transform: false,
-      swipe_velocity: 0.3
-    };
+    var _private;
     _private = {
       adjustLabelBar: function(scope, tab) {
         var $active, $ul;
@@ -96,7 +91,7 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
           scope.left = 0;
         }
         if (($ul.width() + scope.left) < $ul.parent().width()) {
-          return scope.left = $ul.parent().width() - $ul.width();
+          scope.left = $ul.parent().width() - $ul.width();
         }
       }
     };
@@ -104,6 +99,9 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
       restrict: "E",
       replace: true,
       transclude: true,
+      scope: {
+        control: "="
+      },
       template: "<div class=\"imo-tab-slider\">\n  <div class=\"imo-tab-slider-labels\">\n    <ul style=\"left:{{left}}px\">\n      <li ng-repeat=\"tab in tabs\" ng-click=\"scrollTo(tab)\" ng-class=\"{active: current == tab.index}\">{{tab.label}}</li>\n    </ul>\n  </div>\n  <div class=\"imo-tab-slider-slides\" ng-swipe-right=\"prev()\" ng-swipe-left=\"next()\" ng-transclude></div>\n</div>",
       controller: [
         "$scope", function($scope) {
@@ -140,11 +138,16 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
         }
       ],
       link: function(scope, element, attrs) {
-        scope.element = element;
+        scope.internalControl = scope.control || {};
+        scope.internalControl.clearTabs = function() {
+          scope.tabs = [];
+          return scope.current = 0;
+        };
+        scope.element = jQuery(element);
         scope.current = 0;
         scope.currentTab = null;
         scope.left = 0;
-        return scope.currentLabel = null;
+        scope.currentLabel = null;
       }
     };
   }
