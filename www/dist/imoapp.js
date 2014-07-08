@@ -141,7 +141,8 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
         scope.internalControl = scope.control || {};
         scope.internalControl.clearTabs = function() {
           scope.tabs = [];
-          return scope.current = 0;
+          scope.current = 0;
+          return scope.left = 0;
         };
         scope.element = jQuery(element);
         scope.current = 0;

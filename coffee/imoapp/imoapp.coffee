@@ -142,6 +142,7 @@ angular.module("imo", ["ngTouch"])
         scope.tabs = []
         scope.left = 0
         scope.current = 0
+        scope.left = 0
       scope.element = jQuery(element)
       scope.current = 0
       scope.currentTab = null
