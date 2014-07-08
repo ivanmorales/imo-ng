@@ -140,6 +140,7 @@ angular.module("imo", ["ngTouch"])
       scope.internalControl.clearTabs = ->
         scope.tabs = []
         scope.current = 0
+        scope.left = 0
       scope.element = jQuery(element)
       scope.current = 0
       scope.currentTab = null
