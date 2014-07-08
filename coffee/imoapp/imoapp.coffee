@@ -1,8 +1,4 @@
-<<<<<<< HEAD:coffee/directives.coffee
-imoApp
-=======
 angular.module("imo", ["ngTouch"])
->>>>>>> release/v0.0.2:coffee/imoapp/imoapp.coffee
   .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 
@@ -93,6 +89,7 @@ angular.module("imo", ["ngTouch"])
         scope.left = ($ul.parent().width() - $ul.width()) if ($ul.width() + scope.left) < $ul.parent().width()
         return
 
+        return
     restrict: "E"
     replace: true
     transclude: true
@@ -141,15 +138,14 @@ angular.module("imo", ["ngTouch"])
     ]
     link: (scope, element, attrs)->
       scope.internalControl = scope.control or {}
-
       scope.internalControl.clearTabs = ->
         scope.tabs = []
         scope.left = 0
         scope.current = 0
-
       scope.element = jQuery(element)
       scope.current = 0
       scope.currentTab = null
       scope.left = 0
       scope.currentLabel = null
+      return
   ]
