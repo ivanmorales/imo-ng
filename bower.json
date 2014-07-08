@@ -20,6 +20,13 @@
   "ignore": [
     "coffee",
     "sass",
-    "www/index.html"
+    "www/index.html",
+    "www/js",
+    ".bower.json",
+    ".bowerrc",
+    ".gitignore",
+    "Gruntfile.coffee",
+    "package.json",
+    "README.md"
   ]
 }

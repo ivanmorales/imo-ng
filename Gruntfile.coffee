@@ -49,10 +49,11 @@ module.exports = (grunt)->
         options:
           bare: true
         files:
-          "./www/js/build/build.js": [
-            paths.coffee + "hairtypes/*.coffee",
-            paths.coffee + "app/*.coffee",
+          "./www/js/build/app.js": [
             paths.coffee + "*.coffee"
+          ]
+          "./www/dist/imoapp.js": [
+            "#{paths.coffee}/imoapp/*.coffee"
           ]
 
   grunt.initConfig(config)
