@@ -54,17 +54,16 @@ angular.module("imo", ["ngTouch"])
       return
 
   .directive "imoTabSliderItem", ["$q", ($q)->
-    scope:
-      label: "@"
-      current: "@"
     restrict: "E"
     replace: true
     require: "^imoTabSlider"
     transclude: true
-    template: """<div class="imo-tab-slider-item" current="{{current}}" ng-show="tabIndex == current" ng-transclude></div>"""
+    template: """<div class="imo-tab-slider-item" ng-show="tabIndex == outer.current" ng-transclude></div>"""
     link: (scope, element, attrs, controller)->
       scope.current = 0
       scope.tabIndex = controller.currentTabLength()
+      scope.label = attrs.label
+      scope.outer = controller.scope
 
       tab = 
         label: scope.label
@@ -106,12 +105,19 @@ angular.module("imo", ["ngTouch"])
     controller: ["$scope", ($scope)->
       $scope.tabs = []
 
+      $scope.current = 0
+      $scope.currentTab = null
+      $scope.left = 0
+      $scope.currentLabel = null
+
+      @scope = $scope
       @registerTab = (tab)->
         $scope.tabs.push(tab)
         return
 
       @currentTabLength = ->
         $scope.tabs.length
+
 
       $scope.prev = =>
         idx = if $scope.current is 0 then 0 else $scope.current - 1
@@ -133,18 +139,17 @@ angular.module("imo", ["ngTouch"])
         _private.adjustLabelBar($scope, tab)
 
         return
+
+      $scope.internalControl = $scope.control or {}
+      $scope.internalControl.clearTabs = ->
+        $scope.tabs = []
+        $scope.current = 0
+        $scope.left = 0
+        return
+
       return
     ]
     link: (scope, element, attrs)->
-      scope.internalControl = scope.control or {}
-      scope.internalControl.clearTabs = ->
-        scope.tabs = []
-        scope.current = 0
-        scope.left = 0
       scope.element = jQuery(element)
-      scope.current = 0
-      scope.currentTab = null
-      scope.left = 0
-      scope.currentLabel = null
       return
   ]

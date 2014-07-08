@@ -53,19 +53,17 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
 }).directive("imoTabSliderItem", [
   "$q", function($q) {
     return {
-      scope: {
-        label: "@",
-        current: "@"
-      },
       restrict: "E",
       replace: true,
       require: "^imoTabSlider",
       transclude: true,
-      template: "<div class=\"imo-tab-slider-item\" current=\"{{current}}\" ng-show=\"tabIndex == current\" ng-transclude></div>",
+      template: "<div class=\"imo-tab-slider-item\" ng-show=\"tabIndex == outer.current\" ng-transclude></div>",
       link: function(scope, element, attrs, controller) {
         var tab;
         scope.current = 0;
         scope.tabIndex = controller.currentTabLength();
+        scope.label = attrs.label;
+        scope.outer = controller.scope;
         tab = {
           label: scope.label,
           element: element,
@@ -106,6 +104,11 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
       controller: [
         "$scope", function($scope) {
           $scope.tabs = [];
+          $scope.current = 0;
+          $scope.currentTab = null;
+          $scope.left = 0;
+          $scope.currentLabel = null;
+          this.scope = $scope;
           this.registerTab = function(tab) {
             $scope.tabs.push(tab);
           };
@@ -135,20 +138,16 @@ angular.module("imo", ["ngTouch"]).directive("imoSurfaceReaction", function() {
             $scope.current = tab.index;
             _private.adjustLabelBar($scope, tab);
           };
+          $scope.internalControl = $scope.control || {};
+          $scope.internalControl.clearTabs = function() {
+            $scope.tabs = [];
+            $scope.current = 0;
+            $scope.left = 0;
+          };
         }
       ],
       link: function(scope, element, attrs) {
-        scope.internalControl = scope.control || {};
-        scope.internalControl.clearTabs = function() {
-          scope.tabs = [];
-          scope.current = 0;
-          return scope.left = 0;
-        };
         scope.element = jQuery(element);
-        scope.current = 0;
-        scope.currentTab = null;
-        scope.left = 0;
-        scope.currentLabel = null;
       }
     };
   }

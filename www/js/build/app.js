@@ -22,6 +22,9 @@ app = angular.module('imoApp', ['imo']).controller('TabSliderCtrl', [
       }, {
         title: "Weekend 2",
         content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aliquam asperiores modi aspernatur dignissimos totam enim ipsum delectus vel natus id soluta maxime sunt tenetur laudantium dolorum odio aliquid, aut."
+      }, {
+        title: "Weekend 2",
+        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque aliquam asperiores modi aspernatur dignissimos totam enim ipsum delectus vel natus id soluta maxime sunt tenetur laudantium dolorum odio aliquid, aut."
       }
     ];
   }
