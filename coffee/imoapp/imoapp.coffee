@@ -1,4 +1,8 @@
+<<<<<<< HEAD:coffee/directives.coffee
 imoApp
+=======
+angular.module("imo", ["ngTouch"])
+>>>>>>> release/v0.0.2:coffee/imoapp/imoapp.coffee
   .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 

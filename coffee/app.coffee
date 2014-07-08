@@ -1,8 +1,14 @@
 "use strict"
 
+<<<<<<< HEAD
 imoApp = angular
   .module 'imo', [
     'ngTouch'
+=======
+app = angular
+  .module 'imoApp', [
+    'imo'
+>>>>>>> release/v0.0.2
   ]
   .controller 'TabSliderCtrl', ["$scope", ($scope)->
     $scope.items = [
