@@ -1,4 +1,4 @@
-app
+angular.module("imo", ["ngTouch"])
   .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 
