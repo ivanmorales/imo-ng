@@ -1,4 +1,4 @@
-app
+imoApp
   .directive "imoSurfaceReaction", ->
     _class = "imo-surface-reaction-click"
 
@@ -10,7 +10,7 @@ app
       $scope.circle = null
 
       @registerCircle = (element)->
-        $scope.circle = element
+        $scope.circle = jQuery(element)
         return
       return
     ]
@@ -73,14 +73,10 @@ app
         index: scope.tabIndex
 
       controller.registerTab(tab)
+      return
   ]
 
   .directive "imoTabSlider", ['$q', '$timeout', ($q, $timeout)->
-    hammerOptions = 
-      drag: false
-      transform: false
-      swipe_velocity: 0.3
-
     _private = 
       adjustLabelBar: (scope, tab)->
         $active = tab.labelElement
@@ -91,10 +87,13 @@ app
         scope.left = -1 * ($active.position().left - 50)
         scope.left = 0 if scope.left > 0
         scope.left = ($ul.parent().width() - $ul.width()) if ($ul.width() + scope.left) < $ul.parent().width()
+        return
 
     restrict: "E"
     replace: true
     transclude: true
+    scope:
+      control: "="
     template: """
       <div class="imo-tab-slider">
         <div class="imo-tab-slider-labels">
@@ -137,7 +136,14 @@ app
       return
     ]
     link: (scope, element, attrs)->
-      scope.element = element
+      scope.internalControl = scope.control or {}
+
+      scope.internalControl.clearTabs = ->
+        scope.tabs = []
+        scope.left = 0
+        scope.current = 0
+
+      scope.element = jQuery(element)
       scope.current = 0
       scope.currentTab = null
       scope.left = 0

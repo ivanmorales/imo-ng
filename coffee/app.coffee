@@ -1,6 +1,6 @@
 "use strict"
 
-app = angular
+imoApp = angular
   .module 'imo', [
     'ngTouch'
   ]
